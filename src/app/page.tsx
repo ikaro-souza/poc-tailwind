@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, ButtonIcon } from "@/components/button";
-import * as Icons from "@tabler/icons-react";
+import { IconPlaylistAdd } from "@tabler/icons-react";
 import clsx from "clsx";
 import React from "react";
 
@@ -79,7 +79,7 @@ export default function Home() {
         disabled={disabled}
         leftIcon={
           <ButtonIcon>
-            <Icons.IconPlaylistAdd />
+            <IconPlaylistAdd />
           </ButtonIcon>
         }
       >
@@ -143,9 +143,3 @@ const Switch: React.FC<{ onClick: VoidFunction; label: string }> = ({
     </label>
   );
 };
-
-const icons: Record<string, JSX.Element> = {};
-Object.keys(Icons).forEach((key) => {
-  const Icon = Icons[key as keyof typeof Icons] as React.FC;
-  icons[key] = <Icon />;
-});

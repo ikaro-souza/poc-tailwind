@@ -42,7 +42,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
   ...props
 }) => {
   const className =
-    "flex items-center justify-center gap-1 transition-all disabled:opacity-50 disabled:pointer-events-none border-[1.5px]";
+    "flex items-center font-medium justify-center gap-1 transition-all disabled:opacity-50 disabled:pointer-events-none box-border border";
 
   return (
     <button
@@ -133,17 +133,46 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
         classNameProp
       )}
     >
-      {leftIcon}
-      <span className="text-sm font-medium leading-4">{children}</span>
-      {rightIcon}
+      {leftIcon && (
+        <ButtonIcon size={size} iconOnly={iconOnly}>
+          {leftIcon}
+        </ButtonIcon>
+      )}
+      {children && (
+        <span
+          className={clsx(
+            size === "xs" && "leading-4",
+            size === "sm" && "leading-5",
+            size === "md" || (size === "lg" && "leading-6")
+          )}
+        >
+          {children}
+        </span>
+      )}
+      {rightIcon && (
+        <ButtonIcon size={size} iconOnly={iconOnly}>
+          {rightIcon}
+        </ButtonIcon>
+      )}
     </button>
   );
 };
 
-export const ButtonIcon: React.FC<React.PropsWithChildren> = ({ children }) => {
+const ButtonIcon: React.FC<
+  React.PropsWithChildren<{ size: ButtonSize; iconOnly?: boolean }>
+> = ({ size, children, iconOnly }) => {
   return (
-    <div className="h-6 w-6 text-base" aria-hidden>
-      {children}
+    <div
+      className={clsx(
+        size === "xs" && "h-4 w-4",
+        size === "sm" && "h-5 w-5",
+        size === "md" ? (iconOnly ? "h-5 w-5" : "h-6 w-6") : undefined,
+        size === "lg" && "h-6 w-6"
+      )}
+    >
+      {React.cloneElement(children as React.ReactElement, {
+        className: "h-full w-full",
+      })}
     </div>
   );
 };
