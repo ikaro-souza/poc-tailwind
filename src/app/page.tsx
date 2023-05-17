@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, ButtonIcon } from "@/components/button";
+import { Button } from "@/components/button";
 import { IconPlaylistAdd } from "@tabler/icons-react";
 import clsx from "clsx";
 import React from "react";
@@ -77,11 +77,7 @@ export default function Home() {
         pill={pill}
         iconOnly={iconOnly}
         disabled={disabled}
-        leftIcon={
-          <ButtonIcon>
-            <IconPlaylistAdd />
-          </ButtonIcon>
-        }
+        leftIcon={<IconPlaylistAdd />}
       >
         Button
       </Button>
